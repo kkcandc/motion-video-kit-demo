@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Northline is a 24-second instrument film. Every frame is a pure function of time, built with GSAP and Three.js, then scored on a contact sheet."
+    />
+    <meta name="theme-color" content="#07080c" />
+    <title>Northline — instrument film</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Outfit:wght@340;460;560&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <header id="top">
+        <div class="brand">
+          <span class="mark" aria-hidden="true">N</span>
+          <div>
+            <strong>Northline</strong>
+            <em>Instrument film</em>
+          </div>
+        </div>
+        <p class="top-note">24s · state = f(t) · mute</p>
+        <div class="top-actions">
+          <button id="picture" type="button" aria-pressed="false">Picture</button>
+        </div>
+      </header>
+
+      <main id="stage">
+        <div id="frame">
+          <canvas id="gl" aria-label="Northline film frame"></canvas>
+          <canvas id="grain" aria-hidden="true"></canvas>
+          <div id="vignette"></div>
+          <div id="type-layer">
+            <div class="lower">
+              <div class="kicker" id="k1"><span>01</span> Cold open</div>
+              <div class="mask"><div class="tl-line" id="l1">Scope is empty.</div></div>
+              <div class="kicker" id="k2"><span>02</span> Assembly</div>
+              <div class="mask"><div class="tl-line" id="l2">Lock the rings.</div></div>
+              <div class="kicker" id="k3"><span>03</span> Heading</div>
+            </div>
+            <div class="callouts">
+              <div class="call" id="c1">
+                <em>Azimuth</em>
+                <strong id="az">318.24°</strong>
+              </div>
+              <div class="call" id="c2">
+                <em>Latitude</em>
+                <strong id="lat">41.88°</strong>
+              </div>
+              <div class="call" id="c3">
+                <em>Needle</em>
+                <strong id="needle">0.0°</strong>
+              </div>
+            </div>
+            <div id="lockup">
+              <div id="rule"></div>
+              <div class="hero-mask"><div class="hero-title" id="hero">NORTHLINE</div></div>
+              <p class="hero-sub" id="hero-sub">North, held.</p>
+              <div id="end-mark">
+                <svg viewBox="0 0 64 64" aria-hidden="true">
+                  <circle cx="32" cy="32" r="22"></circle>
+                  <path d="M24 44 V24 H26.2 L40 38.2 V24 H42 V44 H39.8 L26 29.8 V44 Z"></path>
+                </svg>
+                <span>Studio reel · 24s · mute</span>
+              </div>
+            </div>
+          </div>
+          <div class="gate" id="gate" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+          <div id="burn">
+            <span>NORTHLINE</span>
+            <span id="tc">00:00:00</span>
+          </div>
+          <div class="letterbox top"></div>
+          <div class="letterbox bot"></div>
+          <div id="flash"></div>
+          <div id="veil"></div>
+        </div>
+      </main>
+
+      <footer id="dock">
+        <div id="transport">
+          <button id="play" type="button" aria-pressed="true">Pause</button>
+          <span id="clock">00:00:00</span>
+          <div class="scrub-wrap">
+            <div class="chapters">
+              <button type="button" data-t="0.4">Cold</button>
+              <button type="button" data-t="4.2">Assembly</button>
+              <button type="button" data-t="10.4">Heading</button>
+              <button type="button" data-t="16.8">Title</button>
+              <button type="button" data-t="21.4">Hold</button>
+            </div>
+            <input id="scrub" type="range" min="0" max="24" step="0.001" value="0" aria-label="Film time" />
+          </div>
+          <label class="loop"><input id="loop" type="checkbox" checked /> Loop</label>
+          <button id="rescore" type="button">Re-score</button>
+        </div>
+        <div id="sheet" role="list" aria-label="Contact sheet"></div>
+        <aside id="critic">
+          <header>
+            <strong>Critic</strong>
+            <span>Reads the picture, not the plan</span>
+          </header>
+          <p id="verdict">Scoring eight frames.</p>
+          <div class="meters">
+            <div class="meter" id="meter-contrast"><span>Contrast</span><b>—</b><i></i></div>
+            <div class="meter" id="meter-motion"><span>Motion</span><b>—</b><i></i></div>
+            <div class="meter" id="meter-highlights"><span>Highlights</span><b>—</b><i></i></div>
+            <div class="meter" id="meter-hierarchy"><span>Type field</span><b>—</b><i></i></div>
+          </div>
+          <p id="intent"></p>
+        </aside>
+      </footer>
+    </div>
+
+    <div id="intro" role="status">
+      <div class="intro-mark" aria-hidden="true">N</div>
+      <p class="intro-title">Northline</p>
+      <p id="intro-status">Scoring the reel</p>
+      <div class="intro-bar" aria-hidden="true"><span id="intro-fill"></span></div>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
